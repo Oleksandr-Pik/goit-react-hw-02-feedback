@@ -12,10 +12,10 @@ const FeedbackOptions = ({ options, onLeaveFeedback }) => {
     // console.log([e.target.name]: state[e.target.name]+ 1)
     // console.log(this.state[option])
     console.log(options[e.target.name]);
-  
+    // console.log(options[e.target.name]: options[e.target.name] + 1)
     
     this.setState((options, props) => ({
-    [this.state.option]: options[e.target.name] + 1 
+      [options[e.target.name]]: options[e.target.name] + 1 
     }));
   };
 
