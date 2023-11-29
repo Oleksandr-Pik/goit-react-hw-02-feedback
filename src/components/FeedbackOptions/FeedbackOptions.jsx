@@ -6,18 +6,33 @@ const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   
   const handleButtonClick = e => {
     // const { good, neutral, bad } = options;
-    console.log(e.target.name);
+    const fieldName = e.target.name;
+    const fieldValue = options[e.target.name];
+    
+    console.log('options :>> ', options);
+    console.log(fieldName);
     // const option = e.target.name;
     // console.log(Object.keys(options));
     // console.log([e.target.name]: state[e.target.name]+ 1)
     // console.log(this.state[option])
-    console.log(options[e.target.name]);
+    console.log(fieldValue);
     // console.log(options[e.target.name]: options[e.target.name] + 1)
     
-    this.setState((options, props) => ({
-      [options[e.target.name]]: options[e.target.name] + 1 
+    // this.setState(prevState => ({
+    //   [options[e.target.name]]: prevState[fieldValue] + 1 
+    // }));
+
+    const bad = options.bad;
+    console.log('bad :>> ', bad);
+    this.setState(prevState => ({
+      bad: prevState.bad + 1 
     }));
+
   };
+
+  // this.setState((options, props) => ({
+  //   [options[e.target.name]]: options[e.target.name] + 1 
+  // }));
 
   // const handleIncrement = () => {};
   // this.setState((state, props) => ({
