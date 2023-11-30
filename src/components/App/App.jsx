@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Container, } from './App.styled';
+import { Container } from './App.styled';
 import Section from 'components/Section/Section';
 import FeedbackOptions from 'components/FeedbackOptions/FeedbackOptions';
+import Statistics from 'components/Statistics/Statistics';
 
 class App extends Component {
   state = {
-    good: 3,
-    neutral: 2,
-    bad: 2,
+    good: 0,
+    neutral: 0,
+    bad: 0,
   };
 
   countTotalFeedback = () => {
@@ -22,33 +23,33 @@ class App extends Component {
     return Math.round((good / total) * 100);
   };
 
-  handleButtonClick = (e) => {
+  handleButtonClick = e => {
     this.setState(prevState => ({
-      
-      [e.target.name]: prevState[e.target.name] + 1
+      [e.target.name]: prevState[e.target.name] + 1,
     }));
   };
 
   render() {
+    const arrOptions = Object.keys(this.state);
+    const total = this.countTotalFeedback();
+    const positivePercentage = this.countPositiveFeedbackPercentage();
     return (
       <Container>
         <Section title="Please leave feedback">
-          <FeedbackOptions options={this.state} onLeaveFeedback={this.handleButtonClick}/>
+          <FeedbackOptions
+            options={arrOptions}
+            onLeaveFeedback={this.handleButtonClick}
+          />
         </Section>
-        
+
         <Section title="Statistics">
-        <ul>
-          {Object.keys(this.state).map(option => (
-            <li key={option}>
-              <p>
-                {/* {option[0]} : {option[1]} */}
-                {[option]} : {this.state[option]}
-              </p>
-            </li>
-          ))}
-        </ul>
-        <p>Total: {this.countTotalFeedback()}</p>
-        <p>Positive feedback: {this.countPositiveFeedbackPercentage()}%</p>
+          <Statistics
+            good={this.state.good}
+            neutral={this.state.neutral}
+            bad={this.state.bad}
+            total={total}
+            positivePercentage={positivePercentage}
+          />
         </Section>
       </Container>
     );
@@ -56,3 +57,4 @@ class App extends Component {
 }
 
 export default App;
+

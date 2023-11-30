@@ -1,25 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Statistics = props => {
+const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
   return (
     <>
       <ul>
-        {Object.keys(this.state).map(option => (
-          <li key={option}>
+        {Object.entries({ good, neutral, bad }).map(option => (
+          <li key={option[0]}>
             <p>
-              {/* {option[0]} : {option[1]} */}
-              {[option]} : {this.state[option]}
+              {option[0]} : {option[1]}
+              {/* {[option]} : {[value]} */}
             </p>
           </li>
         ))}
       </ul>
-      <p>Total: {this.countTotalFeedback()}</p>
-      <p>Positive feedback: {this.countPositiveFeedbackPercentage()}%</p>
+      <p>Total: {total}</p>
+      <p>Positive feedback: {positivePercentage}%</p>
     </>
   );
 };
 
-Statistics.propTypes = {};
+Statistics.propTypes = {
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  positivePercentage: PropTypes.number.isRequired,
+};
 
 export default Statistics;
