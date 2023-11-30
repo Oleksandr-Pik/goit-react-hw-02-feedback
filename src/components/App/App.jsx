@@ -22,10 +22,12 @@ class App extends Component {
     return Math.round((good / total) * 100);
   };
 
-  handleButtonClick = () => {
-    // this.setState
-    console.log('this is App')
-  }
+  handleButtonClick = (e) => {
+    this.setState(prevState => ({
+      
+      [e.target.name]: prevState[e.target.name] + 1
+    }));
+  };
 
   render() {
     return (
